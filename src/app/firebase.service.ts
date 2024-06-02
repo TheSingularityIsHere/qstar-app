@@ -15,7 +15,7 @@ export class FirebaseService {
 
   getData(): Observable<FirebaseData | null> {
 
-    // TODO: only subscribe to relevant parts !
+    // TODO: would it be faster to only subscribe to relevant parts?
     return new Observable<FirebaseData | null>(subscriber => {
       const dbRef = ref(this.db, '/');
       const unsubscribe = onValue(dbRef, (snapshot) => {
@@ -31,6 +31,7 @@ export class FirebaseService {
     });
   }
 
+  // TODO: setters should also use schema
   ping(): Observable<void> {
     const id = this.identityService.getId();
     const dbRef = ref(this.db, `survey/active/${id}`);
@@ -82,5 +83,16 @@ export class FirebaseService {
 
   votes$: Observable<VotesData | null> = this.data$.pipe(
     map(data => data?.survey.votes || null));
+
+  getVote(id: string): Observable<string | null> {
+    return combineLatest([
+      this.questionId$,
+      this.votes$,
+    ]).pipe(map(([questionId, votes]) => {
+      if (!questionId || !votes) return null;
+      const key = `${id}-${questionId}`;
+      return votes[key] || null;
+    }))
+  }
   
   }

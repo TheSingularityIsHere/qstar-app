@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FirebaseService } from '../firebase.service';
 import { CommonModule } from '@angular/common';
 import { combineLatest, map } from 'rxjs';
+import { IdentityService } from '../identity.service';
 
 @Component({
   selector: 'app-vote',
@@ -11,30 +12,24 @@ import { combineLatest, map } from 'rxjs';
   styleUrl: './vote.component.css'
 })
 export class VoteComponent {
-  private firebaseService = inject(FirebaseService);
+
+  activeAnswer$ = this.firebaseService.getVote(this.identityService.getId());
   data$ = combineLatest([
     this.firebaseService.question$,
     this.firebaseService.questionId$,
     this.firebaseService.state$,
-  ]).pipe(map(([question, questionId, state]) => (
-    {question, questionId, state}
+    this.activeAnswer$,
+  ]).pipe(map(([question, questionId, state, activeAnswer]) => (
+    {question, questionId, state, activeAnswer}
   )));
 
-  lastQuestionId: string | null = null;
-  activeButton: string | null = null;
-
-  constructor() {
-    this.firebaseService.questionId$.subscribe(questionId => {
-      if (this.lastQuestionId != questionId) {
-        this.activeButton = null;
-      }
-      this.lastQuestionId = questionId;
-    })
-  }
+  constructor(
+    private firebaseService: FirebaseService,
+    private identityService: IdentityService
+  ) {}
 
   setActive(questionId: string | null, button: 'A' | 'B') {
     if (!questionId) return;
-    this.activeButton = button;
     this.firebaseService.vote(questionId, button);
   }
 

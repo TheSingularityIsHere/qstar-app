@@ -1,6 +1,6 @@
-<div *ngIf="data$ | async as data; else loading">
+<article class="page" *ngIf="data$ | async as data; else loading">
   <!-- <pre>{{data | json}}</pre> -->
-  <h1>#{{data.questionId}} {{ data.question?.question }}</h1>
+  <h2>#{{data.questionId}} {{ data.question?.question }}</h2>
   <ul class="answers">
     <li class="answer">
       <div>
@@ -13,9 +13,13 @@
       </div>
     </li>
   </ul>
-  <button [disabled]="data.state !== 'voting'" [ngClass]="{'active': activeButton === 'A'}" (click)="setActive(data.questionId, 'A')">A is human</button>
-  <button [disabled]="data.state !== 'voting'" [ngClass]="{'active': activeButton === 'B'}" (click)="setActive(data.questionId, 'B')">B is human</button>
-</div>
+  <div class="buttons">
+    <button [disabled]="data.state !== 'voting'" [ngClass]="{'active': data.activeAnswer === 'A'}" (click)="setActive(data.questionId, 'A')">A is human</button>
+    <button [disabled]="data.state !== 'voting'" [ngClass]="{'active': data.activeAnswer === 'B'}" (click)="setActive(data.questionId, 'B')">B is human</button>
+  </div>
+  <!-- <div *ngIf="data.state === 'voting'" class="status">(Voting active)</div> -->
+  <div *ngIf="data.state !== 'voting'" class="status">(Voting ended, please watch screen)</div>
+</article>
 <ng-template #loading>
   <p>Loading...</p>
 </ng-template>

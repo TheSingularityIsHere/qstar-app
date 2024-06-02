@@ -1,4 +1,82 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
 
-.ab {
-  text-decoration: underline;
+h2 {
+  font-size: 2vw;
+}
+
+.buttons {
+
+  display: flex;
+  gap: 2rem;
+  /* width: 90%; */
+  margin: 0 auto;
+  padding-top: 3rem;
+  align-items: center;
+
+  button {
+    flex: 1;
+    padding: 1rem 2rem;
+    color: var(--fg);
+    background: transparent;
+    font-weight: bold;
+    border: 1px solid var(--fg);
+  }
+
+  .state {
+    width: 20rem;
+    text-align: center;
+  }
+
+}
+
+.answers {
+
+  font-size: 1.5vw;
+
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .answer {
+
+    display: flex;
+    gap: 3rem;
+
+    .percentage {
+      width: 10%;
+      text-align: right;
+      font-weight: lighter;
+      font-size: 1.5em;
+      &.hidden {
+        opacity: 0;
+      }
+    }
+    .text {
+      width: 70%;
+    }
+    .id {
+      width: 20%;
+      font-size: 1.5em;
+      font-weight: bold;
+      &.hidden {
+        opacity: 0;
+      }
+    }
+
+    .ab {
+      text-decoration: underline;
+    }
+
+  }
+}
+
+.status {
+  font-size: 1.5em;
 }

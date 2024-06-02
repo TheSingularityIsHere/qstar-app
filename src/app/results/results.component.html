@@ -1,35 +1,45 @@
-<div *ngIf="data$ | async as data; else loading">
-  <h1>#{{data.questionId}} {{ data.question?.question }}</h1>
+<article class="page" *ngIf="data$ | async as data; else loading">
+
+  <div class="buttons">
+    <button (click)="prev(data.questionId, data.state)">&lt;&lt;</button>
+    <div class="state">
+      <span> Question {{data.questionIndex}}/{{data.questionNum}}</span>
+      —
+      <span>{{formatState(data.state)}}</span>
+    </div>
+    <button (click)="next(data.questionId, data.state)">&gt;&gt;</button>
+  </div>
+
+  <h2>#{{data.questionId}} {{ data.question?.question }}</h2>
+
   <ul class="answers">
     <li class="answer">
-      <div>
-        <span class="ab">Answer A:</span> {{data.question?.answerA}}
-      </div>
-      <div *ngIf="data.state === 'stats' || data.state === 'id'" class="percentage">
+      <div [class]="(data.state === 'stats' || data.state === 'id') ? '' : 'hidden'" class="percentage">
         {{getFraction(data.questionId, 'A') | percent:'1.0'}}
       </div>
-      <div *ngIf="data.state === 'id'" class="id">
-        {{data.question?.identityA}}
+      <div class="text">
+        <span class="ab">Answer A:</span> {{data.question?.answerA}}
+      </div>
+      <div [class]="data.state === 'id' ? '' : 'hidden'" class="id">
+        {{formatIdentity(data.question?.identityA)}}
       </div>
       </li>
     <li class="answer">
-      <div>
-        <span class="ab">Answer B:</span> {{data.question?.answerB}}
-      </div>
-      <div *ngIf="data.state === 'stats' || data.state === 'id'" class="percentage">
+      <div [class]="(data.state === 'stats' || data.state === 'id') ? '' : 'hidden'" class="percentage">
         {{getFraction(data.questionId, 'B') | percent:'1.0'}}
       </div>
-      <div *ngIf="data.state === 'id'" class="id">
-        {{data.question?.identityB}}
+      <div class="text">
+        <span class="ab">Answer B:</span> {{data.question?.answerB}}
+      </div>
+      <div [class]="data.state === 'id' ? '' : 'hidden'" class="id">
+        {{formatIdentity(data.question?.identityB)}}
       </div>
     </li>
   </ul>
-  <div *ngIf="data.state === 'voting'">
-    Answered: {{ getNumAnswered(data.questionId) }} / {{ numOnline }}
+  <div class="status">
+    Collected votes: {{ getNumAnswered(data.questionId) }} / {{ numOnline }}
   </div>
-  <button (click)="prev(data.questionId, data.state)">Prev</button>
-  <button (click)="next(data.questionId, data.state)">Next</button>
-</div>
+</article>
 
 <ng-template #loading>
   <p>Loading...</p>

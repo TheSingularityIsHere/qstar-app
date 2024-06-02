@@ -1,9 +1,53 @@
-
-.ab {
-  text-decoration: underline;
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 }
 
-.active {
-  background: black;
-  color: white;
+.answers {
+
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .ab {
+    text-decoration: underline;
+  }
+}
+
+.buttons {
+
+  display: flex;
+  gap: 1rem;
+  width: 90%;
+  margin: 0 auto;
+
+  button {
+    flex: 1;
+    height: 3rem;
+    color: var(--fg);
+    background: transparent;
+    font-weight: bold;
+    border: 1px solid var(--fg);
+
+    &.active {
+      background: var(--bg4);;
+    }
+
+    &:disabled {
+      border: 0;
+      &:not(.active) {
+        color: var(--fg-dim);
+      }
+    }
+  }
+
+}
+
+.status {
+  text-align: center;
+  color: var(--fg-dim);
 }

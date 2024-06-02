@@ -1,1 +1,55 @@
-/* You can add global styles to this file, and also import other style files */
+
+/* from https://github.com/TheSingularityIsHere/qstar-research-com-staging/blob/main/index.html */
+
+@font-face { font-family: Lexend; src: url('../public/lexend.ttf'); }
+
+:root {
+  --fg: #ddd;
+  --fg-dim: #888;
+  --bg: rgb(6, 1, 43);
+  --bg2: rgb(44, 8, 87);
+  --bg3: rgb(24, 0, 65);
+  --bg4: rgb(223, 56, 230);
+  --max-width: 1320px;
+  --font-size: 16px;
+}
+
+@media only screen and (max-width: 1466px) {
+  :root {
+    --max-width: 90vw;
+    --font-size: 14px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+  }
+}
+
+* {
+  font-family: Lexend, sans-serif;
+}
+
+html, body {
+  margin: 0;
+}
+html {
+  background-color: var(--bg);
+  color: var(--fg);
+}
+
+a, a:visited {
+  color: var(--fg);
+}
+
+article {
+  padding: 0 0.5rem;
+  max-width: var(--max-width);
+  margin: auto;
+  overflow: hidden;
+}
+@media only screen and (max-width: 640px) and (orientation: portrait) {
+  article {
+    max-width: 100%;
+  }
+}
