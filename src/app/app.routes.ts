@@ -1,4 +1,4 @@
-import { Route, Routes, UrlMatchResult, UrlSegment, UrlSegmentGroup } from '@angular/router';
+import { Routes } from '@angular/router';
 import { VoteComponent } from './vote/vote.component';
 import { ResultsComponent } from './results/results.component';
 
