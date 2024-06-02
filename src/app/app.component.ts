@@ -3,6 +3,8 @@ import { RouterModule, RouterOutlet, NavigationStart, Router } from '@angular/ro
 
 import { ResultsComponent } from './results/results.component';
 import { VoteComponent } from './vote/vote.component';
+import { version } from '../../package.json';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -13,11 +15,12 @@ import { VoteComponent } from './vote/vote.component';
 })
 export class AppComponent implements OnInit {
 
-  title = 'qstar-app';
+  title = `QSTAR Research App v${version}`;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private titleService: Title) {}
 
   ngOnInit() {
+    this.titleService.setTitle(this.title);
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         const url = new URL(event.url, window.location.origin);
