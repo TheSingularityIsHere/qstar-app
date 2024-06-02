@@ -1,0 +1,36 @@
+<div *ngIf="data$ | async as data; else loading">
+  <h1>#{{data.questionId}} {{ data.question?.question }}</h1>
+  <ul class="answers">
+    <li class="answer">
+      <div>
+        <span class="ab">Answer A:</span> {{data.question?.answerA}}
+      </div>
+      <div *ngIf="data.state === 'stats' || data.state === 'id'" class="percentage">
+        {{getFraction(data.questionId, 'A') | percent:'1.0'}}
+      </div>
+      <div *ngIf="data.state === 'id'" class="id">
+        {{data.question?.identityA}}
+      </div>
+      </li>
+    <li class="answer">
+      <div>
+        <span class="ab">Answer B:</span> {{data.question?.answerB}}
+      </div>
+      <div *ngIf="data.state === 'stats' || data.state === 'id'" class="percentage">
+        {{getFraction(data.questionId, 'B') | percent:'1.0'}}
+      </div>
+      <div *ngIf="data.state === 'id'" class="id">
+        {{data.question?.identityB}}
+      </div>
+    </li>
+  </ul>
+  <div *ngIf="data.state === 'voting'">
+    Answered: {{ getNumAnswered(data.questionId) }} / {{ numOnline }}
+  </div>
+  <button (click)="prev(data.questionId, data.state)">Prev</button>
+  <button (click)="next(data.questionId, data.state)">Next</button>
+</div>
+
+<ng-template #loading>
+  <p>Loading...</p>
+</ng-template>

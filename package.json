@@ -1,10 +1,11 @@
 {
   "name": "qstar-app",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build -c production --base-href /app/",
+    "stage": "cd www && python3 -m http.server 4200",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

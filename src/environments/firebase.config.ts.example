@@ -1,0 +1,10 @@
+// Created via https://console.firebase.google.com/project/qstar-app
+export const firebaseConfig = {
+  apiKey: "TODO",
+  authDomain: "TODO",
+  databaseURL: "TODO",
+  projectId: "TODO",
+  storageBucket: "TODO",
+  messagingSenderId: "TODO",
+  appId: "TODO"
+};
