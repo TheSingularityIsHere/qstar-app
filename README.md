@@ -23,6 +23,7 @@ npx firebase init  # we're using "realtime database"
 # after updating data.json and database.rules.json
 npx firebase deploy
 npx firebase database:set / data.json
+npx firebase database:set -f /survey/questions questions.json
 
 # running locally
 npm run start

@@ -1,25 +1,39 @@
 <article class="page" *ngIf="data$ | async as data; else loading">
-  <!-- <pre>{{data | json}}</pre> -->
-  <h2>#{{data.questionId}} {{ data.question?.question }}</h2>
-  <ul class="answers">
-    <li class="answer">
-      <div>
-        <span class="ab">Answer A:</span> {{data.question?.answerA}}
-      </div>
+  <div *ngIf="data.questionId; else noquestion">
+    <!-- <pre>{{data | json}}</pre> -->
+    <h2>#{{data.questionId}} {{ data.question?.question }}</h2>
+    <ul class="answers">
+      <li class="answer">
+        <div>
+          <span class="ab">Answer A:</span> {{data.question?.answerA}}
+        </div>
+        </li>
+      <li class="answer">
+        <div>
+          <span class="ab">Answer B:</span> {{data.question?.answerB}}
+        </div>
       </li>
-    <li class="answer">
-      <div>
-        <span class="ab">Answer B:</span> {{data.question?.answerB}}
-      </div>
-    </li>
-  </ul>
-  <div class="buttons">
-    <button [disabled]="data.state !== 'voting'" [ngClass]="{'active': data.activeAnswer === 'A'}" (click)="setActive(data.questionId, 'A')">A is human</button>
-    <button [disabled]="data.state !== 'voting'" [ngClass]="{'active': data.activeAnswer === 'B'}" (click)="setActive(data.questionId, 'B')">B is human</button>
+    </ul>
+    <div class="buttons">
+      <button [disabled]="data.state !== 'voting'" [ngClass]="{'active': data.activeAnswer === 'A'}" (click)="setActive(data.questionId, 'A')">A is human</button>
+      <button [disabled]="data.state !== 'voting'" [ngClass]="{'active': data.activeAnswer === 'B'}" (click)="setActive(data.questionId, 'B')">B is human</button>
+    </div>
+    <!-- <div *ngIf="data.state === 'voting'" class="status">(Voting active)</div> -->
+    <div *ngIf="data.state !== 'voting'" class="status">(Voting ended, please watch screen)</div>
   </div>
-  <!-- <div *ngIf="data.state === 'voting'" class="status">(Voting active)</div> -->
-  <div *ngIf="data.state !== 'voting'" class="status">(Voting ended, please watch screen)</div>
+
+  <ng-template #noquestion>
+    <div *ngIf="data.state === 'id'; else waiting">
+      <h2>All questions answered</h2>
+      <p>Thank you for your votes!</p>
+    </div>
+    <ng-template #waiting>
+      <h2>Please wait</h2>
+      <p>We're currently working on activating the first question in the system. The question will be shown in this screen as soon as it's ready.</p>
+    </ng-template>
+  </ng-template>
 </article>
+
 <ng-template #loading>
   <p>Loading...</p>
 </ng-template>

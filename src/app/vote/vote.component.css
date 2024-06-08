@@ -23,7 +23,7 @@
   display: flex;
   gap: 1rem;
   width: 90%;
-  margin: 0 auto;
+  margin: 3em auto;
 
   button {
     flex: 1;

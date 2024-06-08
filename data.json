@@ -1,6 +1,6 @@
 {
   "survey": {
-    "state": "001-voting",
+    "state": "-voting",
     "votes": {},
     "active": {},
     "questions":
@@ -11,83 +11,6 @@
         "answerA": "AI is evolving extremely fast, I am curious to play with the next models. ",
         "identityB": "OpenAI",
         "answerB": "Advancements in artificial intelligence are so exciting! They\u2019re transforming industries, making life easier, and opening up amazing new possibilities!"
-      },
-      "002": {
-        "question": "How do you feel about the current advancements in artificial intelligence?",
-        "identityA": "Human2",
-        "answerA": "It's amazing to see the recent progress. It has the potential to accelerate research, solve difficult problems, and increase productivity. But it also has the potential to create a lot of damage, so I have mixed fieelings about it.",
-        "identityB": "Deliar",
-        "answerB": "It\u2019s in an odd way thrilling and terrifying.  I'm constantly thinking about how it will impact everything around me and myself. "
-      },
-      "003": {
-        "question": "What is your view on climate change?",
-        "identityA": "Human2",
-        "answerA": "It's one of the greatest challenges for mankind ever. It requires global colaboration at an unprecedented scale. Unfortunately progress has been very slow so far.",
-        "identityB": "Deliar",
-        "answerB": "The planet\u2019s heating up, and we\u2019re still debating on about straws. It\u2019s time for radical action, not homeopathic gestures."
-      },
-      "004": {
-        "question": "What is your view on climate change?",
-        "identityA": "Human1",
-        "answerA": "We are probably fucked. ",
-        "identityB": "OpenAI",
-        "answerB": "Addressing climate change is crucial, and the growing awareness and action are fantastic! Together, we can make a positive impact on our planet\u2019s future!"
-      },
-      "005": {
-        "question": "How do you feel about space exploration?",
-        "identityA": "Human2",
-        "answerA": "I don't think this is a pressing issue. But in the long run it is an interesting endeavor.",
-        "identityB": "Deliar",
-        "answerB": "addressing climate change should be our top priority, not building rockets to fly to mars."
-      },
-      "006": {
-        "question": "How do you feel about space exploration?",
-        "identityA": "Human1",
-        "answerA": "I don't buy in to the hole Elong Musk - mars thing - rather stay on planet earth.",
-        "identityB": "OpenAI",
-        "answerB": "Space exploration is incredibly exciting! It\u2019s pushing the boundaries of our knowledge and inspiring the next generation to dream big about the universe!"
-      },
-      "007": {
-        "question": "How do you feel about the novel \"1984\" by George Orwell?",
-        "identityA": "Deliar",
-        "answerA": "Orwell nailed the surveillance state before Zuckerberg made it cool, and Xi Jin Pin perfectionated the apperatus ",
-        "identityB": "Human2",
-        "answerB": "It's a great novel. The content though is very eerie."
-      },
-      "008": {
-        "question": "How do you feel about the novel \"1984\" by George Orwell?",
-        "identityA": "OpenAI",
-        "answerA": "George Orwell's '1984' is a groundbreaking novel! It's a brilliant critique of totalitarianism, sparking important conversations about freedom and control!",
-        "identityB": "Human1",
-        "answerB": "Love the Book, yet his predictions where 30 years to early. "
-      },
-      "009": {
-        "question": "What is your opinion on the rise of remote work?",
-        "identityA": "Deliar",
-        "answerA": "it can be isolating for some people, for others its great. ",
-        "identityB": "Human1",
-        "answerB": "I love working 3 days sa week from home. Thank you Covid. "
-      },
-      "010": {
-        "question": "What is your opinion on the rise of remote work?",
-        "identityA": "OpenAI",
-        "answerA": "It\u2019s changing the way we live and work, offering more flexibility, improving work-life balance, and even helping the environment by reducing commutes. It\u2019s a game-changer!\"",
-        "identityB": "Human2",
-        "answerB": "It's great to give more flexibility to workers. Though remote work might not be everybody's cup of tea."
-      },
-      "011": {
-        "question": "What do you think about cryptocurrencies?",
-        "identityA": "Deliar",
-        "answerA": " They have some concepts like decentralization which I like. A lot of it feels like get rich scams. NFT artwork? Not my thing. ",
-        "identityB": "Human2",
-        "answerB": "I think they're a scam. The cryptological and distributed-systems aspects are interesting, but the ongoing hype makes them dangerous."
-      },
-      "012": {
-        "question": "What do you think about cryptocurrencies?",
-        "identityA": "OpenAI",
-        "answerA": "Cryptocurrencies are revolutionary! They\u2019re decentralizing finance, providing new opportunities for investment, and transforming the global economy. The future of money is digital!",
-        "identityB": "Human1",
-        "answerB": ""
       }
     }
   }

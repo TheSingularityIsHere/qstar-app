@@ -113,36 +113,35 @@ export class ResultsComponent {
 
   questionIds : string[] | null = null;
 
+  questionIdsStates() {
+    const ret = ['-voting'];
+    for (const questionId of (this.questionIds || [])) {
+      ret.push(`${questionId}-voting`);
+      ret.push(`${questionId}-stats`);
+      ret.push(`${questionId}-id`);
+    }
+    ret.push('-id');
+    return ret;
+  }
+
+  prevNext(questionId: string | null, state: StateEnum | null, delta: number) {
+    const idsStates = this.questionIdsStates();
+    let idx = idsStates.indexOf(`${questionId || ''}-${state}`);
+    console.log('idx', idx, questionId, state, idsStates);
+    if (idx === -1) {
+      idx = 0;
+    } else {
+      idx = (idx + delta)
+    }
+    const nextIdState = idsStates[idx % idsStates.length];
+    console.log('nextIdState', nextIdState);
+    const [nextId, nextState] = nextIdState.split('-');
+    this.firebaseService.setState(nextId, nextState as StateEnum);
+  }
   prev(questionId: string | null, state: StateEnum | null) {
-    if (!questionId || !state || !this.questionIds) return;
-    if (state === 'id') {
-      state = 'stats';
-    } else if (state === 'stats') {
-      state = 'voting';
-    } else {
-      const idx = this.questionIds.indexOf(questionId);
-      if (idx === 0) {
-        questionId = this.questionIds[this.questionIds.length - 1];
-      } else {
-        questionId = this.questionIds[idx - 1];
-      }
-      state = 'id'
-    }
-    this.firebaseService.setState(questionId, state);
+    this.prevNext(questionId, state, -1);
   }
-
   next(questionId: string | null, state: StateEnum | null) {
-    if (!questionId || !state || !this.questionIds) return;
-    if (state === 'voting') {
-      state = 'stats';
-    } else if (state === 'stats') {
-      state = 'id';
-    } else {
-      const idx = this.questionIds.indexOf(questionId);
-      questionId = this.questionIds[(idx + 1) % this.questionIds.length];
-      state = 'voting';
-    }
-    this.firebaseService.setState(questionId, state);
+    this.prevNext(questionId, state, 1);
   }
-
 }

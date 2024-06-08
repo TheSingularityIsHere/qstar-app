@@ -2,43 +2,52 @@
 
   <div class="buttons">
     <button (click)="prev(data.questionId, data.state)">&lt;&lt;</button>
-    <div class="state">
-      <span> Question {{data.questionIndex}}/{{data.questionNum}}</span>
+    <div class="state" *ngIf="data.questionId; else specialstate">
+      <span> Question {{data.questionIndex + 1}}/{{data.questionNum}}</span>
       —
       <span>{{formatState(data.state)}}</span>
     </div>
+    <ng-template #specialstate>
+      {{data.state === 'id' ? 'RCTT Results' : 'RCTT Welcome'}}
+    </ng-template>
     <button (click)="next(data.questionId, data.state)">&gt;&gt;</button>
   </div>
 
-  <h2>#{{data.questionId}} {{ data.question?.question }}</h2>
+  <div *ngIf="data.questionId; else noquestion">
+    <h2>#{{data.questionId}} {{ data.question?.question }}</h2>
 
-  <ul class="answers">
-    <li class="answer">
-      <div [class]="(data.state === 'stats' || data.state === 'id') ? '' : 'hidden'" class="percentage">
-        {{getFraction(data.questionId, 'A') | percent:'1.0'}}
-      </div>
-      <div class="text">
-        <span class="ab">Answer A:</span> {{data.question?.answerA}}
-      </div>
-      <div [class]="data.state === 'id' ? '' : 'hidden'" class="id">
-        {{formatIdentity(data.question?.identityA)}}
-      </div>
+    <ul class="answers">
+      <li class="answer">
+        <div [class]="(data.state === 'stats' || data.state === 'id') ? '' : 'hidden'" class="percentage">
+          {{getFraction(data.questionId, 'A') | percent:'1.0'}}
+        </div>
+        <div class="text">
+          <span class="ab">Answer A:</span> {{data.question?.answerA}}
+        </div>
+        <div [class]="data.state === 'id' ? '' : 'hidden'" class="id">
+          {{formatIdentity(data.question?.identityA)}}
+        </div>
+        </li>
+      <li class="answer">
+        <div [class]="(data.state === 'stats' || data.state === 'id') ? '' : 'hidden'" class="percentage">
+          {{getFraction(data.questionId, 'B') | percent:'1.0'}}
+        </div>
+        <div class="text">
+          <span class="ab">Answer B:</span> {{data.question?.answerB}}
+        </div>
+        <div [class]="data.state === 'id' ? '' : 'hidden'" class="id">
+          {{formatIdentity(data.question?.identityB)}}
+        </div>
       </li>
-    <li class="answer">
-      <div [class]="(data.state === 'stats' || data.state === 'id') ? '' : 'hidden'" class="percentage">
-        {{getFraction(data.questionId, 'B') | percent:'1.0'}}
-      </div>
-      <div class="text">
-        <span class="ab">Answer B:</span> {{data.question?.answerB}}
-      </div>
-      <div [class]="data.state === 'id' ? '' : 'hidden'" class="id">
-        {{formatIdentity(data.question?.identityB)}}
-      </div>
-    </li>
-  </ul>
-  <div class="status">
-    Collected votes: {{ getNumAnswered(data.questionId) }} / {{ numOnline }}
+    </ul>
+    <div class="status">
+      Collected votes: {{ getNumAnswered(data.questionId) }} / {{ numOnline }}
+    </div>
   </div>
+
+  <ng-template #noquestion>
+
+  </ng-template>
 </article>
 
 <ng-template #loading>

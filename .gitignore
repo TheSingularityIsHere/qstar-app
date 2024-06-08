@@ -1,5 +1,6 @@
 
 /src/environments/firebase.config.ts
+/questions.json
 
 # Compiled output
 /dist
