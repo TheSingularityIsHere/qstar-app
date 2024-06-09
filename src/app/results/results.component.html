@@ -43,7 +43,7 @@
       </li>
     </ul>
     <div class="status">
-      Collected votes: {{ data.currentResultRow?.total }} / {{ data.onlineIds?.size }}
+      Collected votes: {{ data.currentResultRow?.total || 0 }} / {{ data.onlineIds?.size }}
     </div>
   </div>
 
