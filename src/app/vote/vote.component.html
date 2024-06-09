@@ -24,12 +24,17 @@
 
   <ng-template #noquestion>
     <div *ngIf="data.state === 'id'; else waiting">
-      <h2>All questions answered</h2>
-      <p>Thank you for your votes!</p>
+      <div class="done">
+        <h2>All questions answered</h2>
+        <p>Thank you for your votes!</p>
+      </div>
     </div>
     <ng-template #waiting>
-      <h2>Please wait</h2>
-      <p>We're currently working on activating the first question in the system. The question will be shown in this screen as soon as it's ready.</p>
+      <div class="waiting">
+        <h2>Please wait</h2>
+        <img src="rctt_visual.jpg" />
+        <p>We're currently working on activating the first question in the system. The question will be shown in this screen as soon as it's ready.</p>
+      </div>
     </ng-template>
   </ng-template>
 </article>

@@ -49,6 +49,10 @@
 
   <ng-template #noquestion>
 
+    <div class="voting" *ngIf="data.state === 'voting'">
+      <img src="rctt_visual.jpg" />
+    </div>
+
     <div class="results" *ngIf="data.state === 'id'">
 
       <table>
@@ -92,7 +96,6 @@
       </table>
 
     </div>
-
 
   </ng-template>
 </article>

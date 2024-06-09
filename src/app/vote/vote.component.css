@@ -51,3 +51,11 @@
   text-align: center;
   color: var(--fg-dim);
 }
+
+.waiting {
+  img {
+    max-width: 80%;
+    display: block;
+    margin: 0 auto;
+  }
+}

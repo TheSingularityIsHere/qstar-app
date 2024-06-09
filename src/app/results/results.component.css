@@ -83,6 +83,14 @@ h2 {
   margin-top: 3em;
 }
 
+.voting {
+  img {
+    display: block;
+    margin: 0 auto;
+    max-width: 80%;
+  }
+}
+
 .results {
   display: flex;
   flex-direction: column;
