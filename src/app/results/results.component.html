@@ -9,7 +9,7 @@
     </div>
     <ng-template #specialstate>
       <div class="state">
-        {{data.state === 'id' ? 'RCTT Results' : 'RCTT Welcome'}}
+        {{data.state === 'id' ? 'RCTT Results' : 'Randomized Controlled Touring Test'}}
       </div>
     </ng-template>
     <button (click)="next(data.questionId, data.state)">&gt;&gt;</button>
@@ -59,19 +59,22 @@
         <thead>
           <tr>
             <th>Question</th>
-            <th>Model</th>
-            <th>Votes</th>
-            <th>Total</th>
+            <th>Opponents</th>
+            <th>Winner</th>
             <th>Humanness</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let row of data.results">
             <td class="question">{{ row.questionId }}</td>
-            <td class="agent">{{ row.agent }}</td>
-            <td class="count">{{ row.count }}</td>
-            <td class="total">{{ row.total }}</td>
-            <td class="percent">{{ (row.count / row.total) | percent:'1.0' }}</td>
+            <td class="opponents">Human vs. {{ row.agent }}</td>
+            <td class="winner">
+                {{ row.count > row.total / 2 ? row.agent : 'Human' }}
+            </td>
+            <td class="stats">
+              {{ (row.count / row.total) | percent:'1.0' }}
+              <span class="details">({{row.count}} / {{row.total}} votes)</span>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -79,18 +82,17 @@
       <table class="totals">
         <thead>
           <tr>
-            <th>Model</th>
-            <th>Votes</th>
-            <th>Total</th>
+            <th></th>
             <th>Humanness</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let row of data.totals">
             <td class="agent">{{ row.agent }}</td>
-            <td class="count">{{ row.count }}</td>
-            <td class="total">{{ row.total }}</td>
-            <td class="percent">{{ (row.count / row.total) | percent:'1.0' }}</td>
+            <td class="stats">
+              {{ (row.count / row.total) | percent:'1.0' }}
+              <span class="details">({{row.count}} / {{row.total}} votes)</span>
+            </td>
           </tr>
         </tbody>
       </table>

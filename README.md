@@ -23,6 +23,8 @@ npx firebase init  # we're using "realtime database"
 # after updating data.json and database.rules.json
 npx firebase deploy
 npx firebase database:set / data.json
+# then either edit values directly in Firebase UI ...
+# ... or use Colab to upload new questions / answers in a batch
 npx firebase database:set -f /survey/questions questions.json
 
 # running locally

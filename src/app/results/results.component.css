@@ -100,6 +100,10 @@ h2 {
   align-items: center;
   gap: 3em;
 
+  .details {
+    font-size: 0.5em;
+  }
+
   table {
     margin: 0 auto;
     border-collapse: collapse;
@@ -107,6 +111,12 @@ h2 {
     td,th {
       border: 1px solid var(--fg);
       padding: 0.5em 2em;
+    }
+
+    td.stats {
+      display: flex;
+      gap: 1em;
+      align-items: center;
     }
   }
 }
