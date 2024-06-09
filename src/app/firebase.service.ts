@@ -7,7 +7,7 @@ import { IdentityService } from './identity.service';
 // keys: questionId, identity
 export type CountsData = Map<string, Map<string, number>>;
 
-const COUNT_ONLINE_SECS = 5;
+const COUNT_ONLINE_SECS = 3600;
 const COUNT_VOTE_SECS = 3600;
 
 
