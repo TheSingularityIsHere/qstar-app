@@ -5,7 +5,6 @@ export interface QuestionData {
   biasA: number | undefined;
   answerB: string;
   identityB: string;
-  biasB: number | undefined;
 }
 
 // Maps id to Date.now() to identify active users.
@@ -26,6 +25,7 @@ export interface SurveyData {
   // ...
   // -id
   state: string;
+  // Index is `questionId` : MUST NOT contain any "-" !.
   questions: Record<string, QuestionData>;
   votes: VotesData;
   active: ActiveData;

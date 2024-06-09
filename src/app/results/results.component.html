@@ -8,7 +8,9 @@
       <span>{{formatState(data.state)}}</span>
     </div>
     <ng-template #specialstate>
-      {{data.state === 'id' ? 'RCTT Results' : 'RCTT Welcome'}}
+      <div class="state">
+        {{data.state === 'id' ? 'RCTT Results' : 'RCTT Welcome'}}
+      </div>
     </ng-template>
     <button (click)="next(data.questionId, data.state)">&gt;&gt;</button>
   </div>
@@ -19,7 +21,7 @@
     <ul class="answers">
       <li class="answer">
         <div [class]="(data.state === 'stats' || data.state === 'id') ? '' : 'hidden'" class="percentage">
-          {{getFraction(data.questionId, 'A') | percent:'1.0'}}
+          {{getFraction(data.question, data.currentResultRow, 'A') | percent:'1.0'}}
         </div>
         <div class="text">
           <span class="ab">Answer A:</span> {{data.question?.answerA}}
@@ -30,7 +32,7 @@
         </li>
       <li class="answer">
         <div [class]="(data.state === 'stats' || data.state === 'id') ? '' : 'hidden'" class="percentage">
-          {{getFraction(data.questionId, 'B') | percent:'1.0'}}
+          {{getFraction(data.question, data.currentResultRow, 'B') | percent:'1.0'}}
         </div>
         <div class="text">
           <span class="ab">Answer B:</span> {{data.question?.answerB}}
@@ -41,11 +43,56 @@
       </li>
     </ul>
     <div class="status">
-      Collected votes: {{ getNumAnswered(data.questionId) }} / {{ numOnline }}
+      Collected votes: {{ data.currentResultRow?.total }} / {{ data.onlineIds?.size }}
     </div>
   </div>
 
   <ng-template #noquestion>
+
+    <div class="results" *ngIf="data.state === 'id'">
+
+      <table>
+        <thead>
+          <tr>
+            <th>Question</th>
+            <th>Model</th>
+            <th>Votes</th>
+            <th>Total</th>
+            <th>Humanness</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of data.results">
+            <td class="question">{{ row.questionId }}</td>
+            <td class="agent">{{ row.agent }}</td>
+            <td class="count">{{ row.count }}</td>
+            <td class="total">{{ row.total }}</td>
+            <td class="percent">{{ (row.count / row.total) | percent:'1.0' }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="totals">
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Votes</th>
+            <th>Total</th>
+            <th>Humanness</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of data.totals">
+            <td class="agent">{{ row.agent }}</td>
+            <td class="count">{{ row.count }}</td>
+            <td class="total">{{ row.total }}</td>
+            <td class="percent">{{ (row.count / row.total) | percent:'1.0' }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
 
   </ng-template>
 </article>

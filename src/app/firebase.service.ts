@@ -4,6 +4,57 @@ import { Observable, combineLatest, from, map } from 'rxjs';
 import { ActiveData, FirebaseData, QuestionData, StateEnum, VotesData } from './shared/types';
 import { IdentityService } from './identity.service';
 
+// keys: questionId, identity
+export type CountsData = Map<string, Map<string, number>>;
+
+const COUNT_ONLINE_SECS = 5;
+const COUNT_VOTE_SECS = 3600;
+
+
+function stringToProbability(s: string) {
+  let hash = 5381;
+  for (let i = 0; i < s.length; i++) {
+    hash = (hash * 33) ^ s.charCodeAt(i);
+  }
+  hash = hash >>> 0;
+  return (hash % 100) / 100;
+}
+
+function getBiasedChoice(choice: string, biasA: number | undefined, id: string, questionId: string) {
+  const prob = stringToProbability(id + questionId);
+  // console.log(id, prob);
+  if (biasA) {
+    if (biasA > 0) {
+      if (choice === 'B') {
+        if (prob < biasA) {
+          choice = 'A';
+        }
+      }
+    }
+    if (biasA < 0) {
+      if (choice === 'A') {
+        if (prob < -biasA) {
+          choice = 'B';
+        }
+      }
+    }
+  }
+  return choice;
+}
+
+function getActiveIds(active: ActiveData | null, secs: number) {
+  if (!active) return null;
+  const ret = new Set<string>();
+  const now = Date.now();
+  for (const [id, ts] of Object.entries(active)) {
+    const dt = now - ts;
+    if (dt / 1000 <= secs) {
+      ret.add(id);
+    }
+  }
+  return ret;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -81,8 +132,45 @@ export class FirebaseService {
   active$: Observable<ActiveData | null> = this.data$.pipe(
     map(data => data?.survey.active || null));
 
+  onlineIds$: Observable<Set<string> | null> = this.active$.pipe(
+    map(active => getActiveIds(active, COUNT_ONLINE_SECS)));
+
   votes$: Observable<VotesData | null> = this.data$.pipe(
     map(data => data?.survey.votes || null));
+
+  counts$: Observable<CountsData | null> = this.data$.pipe(
+    map(data => {
+      const votes = data?.survey.votes;
+      const questions = data?.survey.questions;
+      const active = data?.survey.active || null;
+      const online = getActiveIds(active, COUNT_VOTE_SECS) || new Set<string>();
+      if (!votes || !questions || !online) return null;
+      const ret: CountsData = new Map();
+      for (const [idQuestionId, choice] of Object.entries(votes)) {
+        const [id, questionId] = idQuestionId.split('-');
+        if (!online.has(id)) continue;
+        if (!ret.has(questionId)) {
+          ret.set(questionId, new Map<string, number>());
+        }
+        const d = ret.get(questionId)!;
+        const question = questions[questionId] || {};
+        for (const identity of [question.identityA, question.identityB]) {
+          if (!d.has(identity)) {
+            d.set(identity, 0);
+          }
+        }
+        const biasedChoice = getBiasedChoice(choice, question.biasA, id, questionId);
+        const identityA = question.identityA || '?';
+        const identityB = question.identityB || '?';
+        const identity = {'A': identityA, 'B': identityB}[biasedChoice] || '??';
+        if (!d.has(identity)) {
+          d.set(identity, 0);
+        }
+        d.set(identity, d.get(identity) || 0 + 1);
+      }
+      return ret;
+    })
+  );
 
   getVote(id: string): Observable<string | null> {
     return combineLatest([
@@ -94,5 +182,5 @@ export class FirebaseService {
       return votes[key] || null;
     }))
   }
-  
-  }
+
+}

@@ -16,6 +16,7 @@ h2 {
   margin: 0 auto;
   padding-top: 3rem;
   align-items: center;
+  cursor: pointer;
 
   button {
     flex: 1;
@@ -80,4 +81,21 @@ h2 {
 .status {
   font-size: 1.5em;
   margin-top: 3em;
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3em;
+
+  table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    border: 1px solid var(--fg);
+    td,th {
+      border: 1px solid var(--fg);
+      padding: 0.5em 2em;
+    }
+  }
 }
