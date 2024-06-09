@@ -3,7 +3,7 @@
   "version": "0.0.3",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --port 4300",
     "build": "ng build -c production --base-href /app/",
     "stage": "cd www && python3 -m http.server 4200",
     "watch": "ng build --watch --configuration development",
