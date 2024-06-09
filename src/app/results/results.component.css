@@ -1,3 +1,7 @@
+* {
+  font-size: 2vw;
+}
+
 .page {
   display: flex;
   flex-direction: column;
@@ -5,22 +9,22 @@
 }
 
 h2 {
-  font-size: 2vw;
+  font-size: 1.2em;
+  margin: 1em 0 2em 0;
 }
 
 .buttons {
 
   display: flex;
-  gap: 2rem;
-  /* width: 90%; */
+  gap: 1em;
   margin: 0 auto;
-  padding-top: 3rem;
+  padding-top: 1em;
   align-items: center;
   cursor: pointer;
 
   button {
     flex: 1;
-    padding: 1rem 2rem;
+    padding: 0.5em 1em;
     color: var(--fg);
     background: transparent;
     font-weight: bold;
@@ -28,7 +32,7 @@ h2 {
   }
 
   .state {
-    width: 20rem;
+    width: 20em;
     text-align: center;
   }
 
@@ -36,35 +40,34 @@ h2 {
 
 .answers {
 
-  font-size: 1.5vw;
-
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1em;
 
   .answer {
 
     display: flex;
     gap: 3rem;
+    font-size: 0.8em;
 
     .percentage {
-      width: 10%;
+      width: 15%;
       text-align: right;
       font-weight: lighter;
-      font-size: 1.5em;
+      font-size: 2em;
       &.hidden {
         opacity: 0;
       }
     }
     .text {
-      width: 70%;
+      width: 65%;
     }
     .id {
       width: 20%;
-      font-size: 1.5em;
+      font-size: 1.3em;
       font-weight: bold;
       &.hidden {
         opacity: 0;
@@ -79,7 +82,7 @@ h2 {
 }
 
 .status {
-  font-size: 1.5em;
+  font-size: 1.0em;
   margin-top: 3em;
 }
 
