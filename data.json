@@ -3,14 +3,70 @@
     "state": "-voting",
     "votes": {},
     "active": {},
-    "questions":
-    {
+    "questions": {
       "001": {
-        "question": "How do you feel about the current advancements in artificial intelligence?",
+        "question": "Q1",
         "identityA": "Human1",
-        "answerA": "AI is evolving extremely fast, I am curious to play with the next models. ",
+        "answerA": "",
         "identityB": "OpenAI",
-        "answerB": "Advancements in artificial intelligence are so exciting! They\u2019re transforming industries, making life easier, and opening up amazing new possibilities!"
+        "answerB": "",
+        "biasA": 0
+      },
+      "002": {
+        "question": "Q1",
+        "identityA": "Human2",
+        "answerA": "",
+        "identityB": "Deliar",
+        "answerB": "",
+        "biasA": 0
+      },
+      "003": {
+        "question": "Q2",
+        "identityA": "OpenAI",
+        "answerA": "",
+        "identityB": "Human2",
+        "answerB": "",
+        "biasA": 0
+      },
+      "004": {
+        "question": "Q2",
+        "identityA": "Deliar",
+        "answerA": "",
+        "identityB": "Human1",
+        "answerB": "",
+        "biasA": 0
+      },
+      "005": {
+        "question": "Q3",
+        "identityA": "Human2",
+        "answerA": "",
+        "identityB": "Deliar",
+        "answerB": "",
+        "biasA": 0
+      },
+      "006": {
+        "question": "Q3",
+        "identityA": "Human1",
+        "answerA": "",
+        "identityB": "OpenAI",
+        "answerB": "",
+        "biasA": 0
+      },
+      "007": {
+        "question": "Q4",
+        "identityA": "Human1",
+        "answerA": "",
+        "identityB": "Deliar",
+        "answerB": "",
+        "biasA": 0
+      },
+      "008": {
+        "question": "Q4",
+        "identityA": "Human2",
+        "answerA": "",
+        "identityB": "OpenAI",
+        "answerB": "",
+        "biasA": 0
       }
     }
   }
