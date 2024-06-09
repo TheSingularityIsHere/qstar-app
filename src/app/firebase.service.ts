@@ -166,8 +166,9 @@ export class FirebaseService {
         if (!d.has(identity)) {
           d.set(identity, 0);
         }
-        d.set(identity, d.get(identity) || 0 + 1);
+        d.set(identity, (d.get(identity) || 0) + 1);
       }
+      console.log('counts', ret);
       return ret;
     })
   );
