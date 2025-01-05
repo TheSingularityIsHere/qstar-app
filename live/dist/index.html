@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Application</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5px;
+        }
+        .slider-labels span {
+            font-size: 0.8em;
+        }
+        #resultsView {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+    </style>
+  <script type="importmap">
+    {
+      "imports": {
+        "@supabase/supabase-js": "./supabase-shim.js"
+      }
+    }
+    </script>
+</head>
+<body>
+    <div id="surveyForm">
+        <h2>Survey</h2>
+        <div class="form-group">
+            <label for="profession">What is your profession?</label>
+            <select id="profession" required>
+                <option value="">Select profession</option>
+                <option value="healthcare">Healthcare Professional</option>
+                <option value="education">Education</option>
+                <option value="technology">Technology</option>
+                <option value="business">Business/Finance</option>
+                <option value="service">Service Industry</option>
+                <option value="trades">Skilled Trades</option>
+                <option value="government">Government</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="ageRange">What is your age?</label>
+            <select id="ageRange" required>
+                <option value="">Select age range</option>
+                <option value="18-24">18-24</option>
+                <option value="25-34">25-34</option>
+                <option value="35-44">35-44</option>
+                <option value="45-54">45-54</option>
+                <option value="55-64">55-64</option>
+                <option value="65+">65+</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="aiKnowledge">How knowledgeable are you about AI?</label>
+            <input type="range" id="aiKnowledge" min="1" max="5" step="1" value="1">
+            <div class="slider-labels">
+                <span>Not at all</span>
+                <span>Beginner</span>
+                <span>Intermediate</span>
+                <span>Advanced</span>
+                <span>Expert</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Have you been here for previous experiments?</label><br>
+            <input type="checkbox" id="exp1" value="1">
+            <label for="exp1">Experiment #1</label><br>
+            <input type="checkbox" id="exp2" value="2">
+            <label for="exp2">Experiment #2</label><br>
+            <input type="checkbox" id="exp3" value="3">
+            <label for="exp3">Experiment #3</label><br>
+            <input type="checkbox" id="exp4" value="4">
+            <label for="exp4">Experiment #4</label>
+        </div>
+
+        <button id="submitSurvey">Submit</button>
+    </div>
+
+    <div id="resultsView" style="display: none;">
+        <h2>Live Results</h2>
+        <div id="results"></div>
+    </div>
+
+    <script type="module" src="./app.js"></script>
+</body>
+</html>

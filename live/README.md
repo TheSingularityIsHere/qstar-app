@@ -20,3 +20,7 @@ alter publication supabase_realtime
 ```
 
 Then `cp credentials.js.example credentials.js` and update accordingly.
+
+Note that for development you'll want `nmp install --save-dev @supabase/supabase-js`
+
+For release, you can build with `node build.js` – requires `nmp install --save-dev esbuild`
