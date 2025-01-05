@@ -1,5 +1,12 @@
 # QSTAR App
 
+## Experiment 5 (js/Supabase)
+
+See the `live/` directory -- see `live/README.md`.
+
+
+## Initial version (Angular/Firebase)
+
 This app is deployed at https://qstar-research.com/app
 
 Tested with Node `v22.2.0` (Angular CLI `v18.0.2`).

@@ -171,6 +171,10 @@ export class ResultsComponent {
     return ret;
   }
 
+  isLocal() {
+    return true &&  location.href.startsWith('http://localhost');
+  }
+
   prevNext(questionId: string | null, state: StateEnum | null, delta: number) {
     const idsStates = this.questionIdsStates();
     let idx = idsStates.indexOf(`${questionId || ''}-${state}`);

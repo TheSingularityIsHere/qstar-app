@@ -20,24 +20,24 @@
 
     <ul class="answers">
       <li class="answer">
-        <div [class]="(data.state === 'stats' || data.state === 'id') ? '' : 'hidden'" class="percentage">
+        <div [class]="isLocal() || (data.state === 'stats' || data.state === 'id') ? '' : 'hidden'" class="percentage">
           {{getFraction(data.question, data.currentResultRow, 'A') | percent:'1.0'}}
         </div>
         <div class="text">
           <span class="ab">Answer A:</span> {{data.question?.answerA}}
         </div>
-        <div [class]="data.state === 'id' ? '' : 'hidden'" class="id">
+        <div [class]="isLocal() || data.state === 'id' ? '' : 'hidden'" class="id">
           {{formatIdentity(data.question?.identityA)}}
         </div>
         </li>
       <li class="answer">
-        <div [class]="(data.state === 'stats' || data.state === 'id') ? '' : 'hidden'" class="percentage">
+        <div [class]="isLocal() || (data.state === 'stats' || data.state === 'id') ? '' : 'hidden'" class="percentage">
           {{getFraction(data.question, data.currentResultRow, 'B') | percent:'1.0'}}
         </div>
         <div class="text">
           <span class="ab">Answer B:</span> {{data.question?.answerB}}
         </div>
-        <div [class]="data.state === 'id' ? '' : 'hidden'" class="id">
+        <div [class]="isLocal() || data.state === 'id' ? '' : 'hidden'" class="id">
           {{formatIdentity(data.question?.identityB)}}
         </div>
       </li>
